@@ -1,33 +1,54 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
-import { addTodo } from '../features/todo/todoSlice';
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { removeTodo, updateTodo } from "../features/todo/todoSlice";
 
 function Todos() {
-    const [input,setInput] = useState('');
-    const dispatch = useDispatch();
+  const [isTodoEditable, setIsTodoEditable] = useState(null);
+  const [editedTodo, setEditedTodo] = useState("");
 
-    const addTodoHandler = (e)=>{
-        e.preventDefault();
-        dispatch(addTodo(input));
-        setInput('');
-    }
+  const dispatch = useDispatch();
+  const todos = useSelector((state) => state.todos);
+
+  const handleEdit = (todo) => {
+    setIsTodoEditable(todo.id);
+    setEditedTodo(todo.text);
+  };
+
+  const handleSave = (id) => {
+    dispatch(updateTodo({ id, text: editedTodo }));
+    setIsTodoEditable(null);
+  };
+
   return (
-    <form onSubmit={addTodoHandler} className="space-x-3 mt-12">
-      <input
-        type="text"
-        className="bg-gray-800 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-        placeholder="Enter a Todo..."
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-      />
-      <button
-        type="submit"
-        className="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
-      >
-        Add Todo
-      </button>
-    </form>
-  )
+    <div className="p-4 bg-gray-400">
+      {todos.map((todo) => (
+        <li key={todo.id} classNam  e="mb-2">
+          <input
+            type="text"
+            value={
+              isTodoEditable === todo.id ? editedTodo : todo.text
+            }
+            onChange={(e) => setEditedTodo(e.target.value)}
+            readOnly={isTodoEditable !== todo.id}
+          />
+
+          {isTodoEditable === todo.id ? (
+            <button onClick={() => handleSave(todo.id)}>
+              Save
+            </button>
+          ) : (
+            <button onClick={() => handleEdit(todo)}>
+              Edit
+            </button>
+          )}
+
+          <button onClick={() => dispatch(removeTodo(todo.id))}>
+            🗑️
+          </button>
+        </li>
+      ))}
+    </div>
+  );
 }
 
-export default Todos
+export default Todos;

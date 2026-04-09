@@ -1,2 +1,22 @@
 @import "tailwindcss";
 
+#body{
+    height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+#container{
+    background: #616161;
+    padding: 12px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-evenly;
+    border-radius: 10px;
+}
+
+button{ 
+    border-radius: 8px;
+    padding: 4px 16px;
+}

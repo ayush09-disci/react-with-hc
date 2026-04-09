@@ -1,22 +1,18 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React,{useState} from 'react'
 
 function App() {
-  let [color,setColor] = useState("olive")
+  const [color, setColor] = useState("#1e1e1e")
   return (
-    <>
-    <div className="w-screen h-screen " style={{backgroundColor:color}}>
-      <div className="fixed w-full flex flex-wrap bottom-1 justify-evenly bg-white p-4 rounded-2xl">
-        <button onClick={()=>setColor("red")} className="rounded-md text-white text-xl px-4 py-1" style={{backgroundColor:"red"}}>Red</button>
-        <button onClick={()=>setColor("green")} className='rounded-md text-white text-xl px-4 py-1' style={{backgroundColor:"green"}}>green</button>
-        <button onClick={()=>setColor("blue")} className="rounded-md text-white text-xl px-4 py-1" style={{backgroundColor:"blue"}}>blue</button>
-        <button onClick={()=>setColor("gray")} className="rounded-md text-white text-xl px-4 py-1" style={{backgroundColor:"gray"}}>gray</button>
-        <button onClick={()=>setColor("orange")} className="rounded-md text-white text-xl px-4 py-1" style={{backgroundColor:"orange"}}>orange</button>
-      </div>
+    <div id="body" style={{background : color}}>
+    <div id="container">
+      <button onClick={()=>setColor("red")} style={{background: "red"}}>red</button> 
+      <button onClick={()=>setColor("yellow")} style={{background: "yellow"}}>yellow</button>
+      <button onClick={()=>setColor("orange")} style={{background: "orange"}}>orange</button>
+      <button onClick={()=>setColor("blue")} style={{background: "blue"}}>blue</button>
+      <button onClick={()=>setColor("green")} style={{background: "green"}}>green</button>
+      <button onClick={()=>setColor("pink")} style={{background: "pink"}}>pink</button>
     </div>
-    </>
+    </div>
   )
 }
 

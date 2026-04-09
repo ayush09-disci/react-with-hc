@@ -1,1 +1,44 @@
 @import "tailwindcss";
+.body{
+    height: 100vh;
+    font-family: 'Arial';
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(345deg,blue,rgb(196, 0, 196));
+}
+.container{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    background: rgb(202, 144, 204);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+input[type="text"]{
+    background: rgba(58, 58, 58, 0.603);
+    margin-right: 10px;
+    border-radius: 8px;
+    outline: none;
+    padding: 4px;
+    width: 90%;
+}
+input[type="range"]{
+    width: 50%;
+    cursor: pointer;
+}
+button{
+    border-radius: 8px;
+    background: #000000ad; 
+    padding: 2px 8px;
+    color: white;  
+}
+button:hover{
+    background: #000000d0; 
+}
+span{
+    padding: 5px;
+}

@@ -1,61 +1,59 @@
-import React, { useId } from 'react'
+import React from "react";
 
 function InputBox({
   label,
   amount,
   onAmountChange,
   onCurrencyChange,
-  currencyOptions = [],
   selectedCurrency = "usd",
-  amountDisabled = false,
-  currencyDisabled = false,
-  className = "",
+  currencyOptions = [],
+  amountDisable = false,
+  currencyDisable = false,
 }) {
-  const amountInputId = useId();
-
   return (
-    // 🔧 FIX: removed `${className=""}`
-    // ❌ YOUR MISTAKE: you were assigning value instead of using the prop
-    <div className={`bg-white p-3 rounded-lg text-sm flex ${className}`}>
-      <div className="w-1/2">
-        <label
-          htmlFor={amountInputId}
-          className="text-black/40 mb-2 inline-block"
-        >
+    <div className="w-full flex flex-col sm:flex-row gap-4 p-4 bg-white rounded-xl shadow-sm">
+      
+      {/* Amount Input */}
+      <div className="flex-1 flex flex-col">
+        <label className="mb-1 text-sm font-medium text-gray-600">
           {label}
         </label>
-
         <input
-          id={amountInputId}
-          className="outline-none w-full bg-transparent py-1.5"
           type="number"
-          placeholder="Amount"
-          disabled={amountDisabled}
           value={amount}
+          disabled={amountDisable}
           onChange={(e) =>
             onAmountChange && onAmountChange(Number(e.target.value))
           }
+          className="w-full px-3 py-2 border border-gray-300 rounded-lg
+                     focus:outline-none focus:ring-2 focus:ring-blue-500
+                     disabled:bg-gray-100 disabled:cursor-not-allowed"
         />
       </div>
 
-      <div className="w-1/2 flex flex-wrap justify-end text-right">
-        <p className="text-black/40 mb-2 w-full">Currency Type</p>
-
+      {/* Currency Select */}
+      <div className="flex-1 flex flex-col">
+        <label className="mb-1 text-sm font-medium text-gray-600">
+          Currency Type
+        </label>
         <select
-          className="rounded-lg px-1 py-1 bg-gray-100 cursor-pointer outline-none"
           value={selectedCurrency}
+          disabled={currencyDisable}
           onChange={(e) =>
             onCurrencyChange && onCurrencyChange(e.target.value)
           }
-          disabled={currencyDisabled}
+          className="w-full px-3 py-2 border border-gray-300 rounded-lg
+                     bg-white focus:outline-none focus:ring-2 focus:ring-blue-500
+                     disabled:bg-gray-100 disabled:cursor-not-allowed"
         >
           {currencyOptions.map((currency) => (
-            <option key={currency} value={currency}>
-              {currency}
+            <option value={currency} key={currency}>
+              {currency.toUpperCase()}
             </option>
           ))}
         </select>
       </div>
+
     </div>
   );
 }

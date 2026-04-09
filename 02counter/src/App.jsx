@@ -1,32 +1,31 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
 
 function App() {
   //hooks
   //1) changes the state in ui
-  let [counter,setCounter] = useState(15);
+  const [counter, setCounter] = useState(0);
 
+  const addValue = ()=>{
+    if(counter<22){
+        setCounter(prevCounter => prevCounter + 1);
+    }
+  }
+  const resetValue = ()=>{
+    setCounter(0);
+  }
+  const removeValue = ()=>{
+    if(counter>=1){
+        setCounter(prevCounter => prevCounter - 1);
+    }
+  }
 
-  const addValue = () =>{
-    if(counter >= 20) setCounter(20);
-    else {
-      setCounter(counter + 1);
-    };
-  }
-  const removeValue = () =>{
-    if(counter <= 0) setCounter(0);
-    else setCounter(counter-1);
-  }
   return (
     <>
-    <h1>Chai aur react</h1>
-    <b>Counter : {counter}</b>
+    <h2>Counter : {counter}</h2>
     <br /><br />
-    <button onClick={addValue}>Add Value {counter}</button>
-    <br /><br />
-    <button onClick={removeValue}>remove Value {counter}</button>
+    <button onClick={addValue}>Add</button>
+    <button onClick={resetValue}>Reset</button>
+    <button onClick={removeValue}>Remove</button>
     </>
   )
 }

@@ -9,8 +9,12 @@ function App() {
 
   return (
     <>
-    <AddTodo/>
-    <Todos/>
+    <div className='flex bg-gray-900 h-screen flex-col justify-center items-center' >
+      <div className='bg-gray-400 w-60/100 rounded-xl p-5'>
+        <AddTodo/>
+        <Todos/>
+      </div>
+    </div>
     </>
   )
 }
